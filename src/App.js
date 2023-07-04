@@ -1,25 +1,31 @@
-import logo from './logo.svg';
 import './App.css';
+import {AdviceCard} from './AdviceCard';
+import dice from './images/icon-dice.svg';
+import React, { useState } from 'react';
 
 function App() {
+  const [advice, setAdvice] = useState('');
+
+  function fetchAdvice() {
+    fetch('https://api.adviceslip.com/advice')
+      .then(response => response.json())
+      .then(data => setAdvice(data.slip.advice))
+      .catch(error => console.error(error));
+  }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div className="box">
+        <AdviceCard advice={advice}/>
+      </div>
+      <button className="circle" onClick={fetchAdvice}>
+        <div className='dice'>
+              <img src={dice} alt='dice' />
+        </div>
+      </button>
     </div>
   );
 }
+
 
 export default App;
