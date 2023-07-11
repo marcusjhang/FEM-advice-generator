@@ -20,7 +20,7 @@ function App() {
       </div>
       <button className="circle" onClick={fetchAdvice}>
         <div className='dice'>
-              <img src={dice} alt='dice' />
+          <img src={dice} alt='dice' />
         </div>
       </button>
     </div>
